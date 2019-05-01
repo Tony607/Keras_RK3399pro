@@ -1,0 +1,2 @@
+./data/dog_299x299.jpg
+./data/cat_299x299.jpg
