@@ -55,7 +55,6 @@ if __name__ == "__main__":
     if ret != 0:
         print("Load inception_v3 failed!")
         exit(ret)
-    print("done")
 
     # Build model
     print("--> Building model")
@@ -64,7 +63,6 @@ if __name__ == "__main__":
     if ret != 0:
         print("Build inception_v3 failed!")
         exit(ret)
-    print("done")
 
     # Export rknn model
     print("--> Export RKNN model")
@@ -72,7 +70,6 @@ if __name__ == "__main__":
     if ret != 0:
         print("Export inception_v3.rknn failed!")
         exit(ret)
-    print("done")
 
     # Set inputs
     img = cv2.imread("./data/elephant.jpg")
@@ -84,18 +81,15 @@ if __name__ == "__main__":
     if ret != 0:
         print("Init runtime environment failed")
         exit(ret)
-    print("done")
 
     # Inference
     print("--> Running model")
     outputs = rknn.inference(inputs=[img])
     show_outputs(outputs)
-    print("done")
     # print('inference result: ', outputs)
 
     # perf
     print("--> Begin evaluate model performance")
     perf_results = rknn.eval_perf(inputs=[img])
-    print("done")
 
     rknn.release()

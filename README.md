@@ -5,9 +5,9 @@
 git clone https://github.com/Tony607/Keras_RK3399pro
 ```
 
-
+**Download pre-compiled Python wheel files from the [releases](https://github.com/Tony607/Keras_RK3399pro/releases/download/v1.0/rknn-toolkit-V0.9.9_package.zip).**
 ### Step1: Freeze Keras model and convert to RKNN model (On Linux development machine)
-Require [Python 3.5+](https://www.python.org/ftp/python/3.6.7/python-3.6.7.exe) and [Jupyter notebook](https://jupyter.readthedocs.io/en/latest/install.html) installed
+Require [Python 3.5+](https://www.python.org/ftp/python/3.6.7/python-3.6.7.exe).
 
 ### Install required libraries for your development machine
 `pip3 install -r requirements.txt`
@@ -16,14 +16,11 @@ The install rknn toolkit with the following command.
 ```
 pip3 install rknn_toolkit-0.9.9-cp36-cp36m-linux_x86_64.whl
 ```
-Start a terminal on your development machine, then run,
-```
-jupyter notebook
-```
 
-In the opened browser window open
+To freeze a Keras InceptionV3 ImageNet model to a single `.pb` file.
+The frozen graph will accept inputs with shape `(N, 299, 299, 3)`.
 ```
-freeze_graph.ipynb
+freeze_graph.py
 ```
 
 To convert the `.pb` file to `.rknn` file, run

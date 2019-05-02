@@ -1,4 +1,5 @@
 import time
+import platform
 import numpy as np
 import cv2
 from rknn.api import RKNN
@@ -27,34 +28,41 @@ if __name__ == "__main__":
     # Create RKNN object
     rknn = RKNN()
     img_height = 299
-    # pre-process config
-    print("--> Load RKNN model")
     # Direct Load RKNN Model
     print("--> Loading RKNN model")
     ret = rknn.load_rknn("./inception_v3.rknn")
     if ret != 0:
         print("Load inception_v3.rknn failed!")
         exit(ret)
-    print("done")
 
     # Set inputs
-    img = cv2.imread("./data/elephant.jpg")
+    img = cv2.imread("./data/beaver.jpg")
     img = cv2.resize(img, dsize=(img_height, img_height), interpolation=cv2.INTER_CUBIC)
+
+    # This can opt out if "reorder_channel" is set to "2 1 0"
+    # rknn.config() in `convert_rknn.py`
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     # init runtime environment
     print("--> Init runtime environment")
-    ret = rknn.init_runtime(target="rk3399pro")
+
+    if "aarch64" in platform.platform():
+        target = "rk3399pro"
+    else:
+        target = None
+
+    ret = rknn.init_runtime(target=target)
     if ret != 0:
         print("Init runtime environment failed")
         exit(ret)
-    print("done")
 
     # Inference
     print("--> Running model")
     outputs = rknn.inference(inputs=[img])
+
+    outputs = np.array(outputs)
+    print("Outputs shape: {}".format(outputs.shape))
     show_outputs(outputs)
-    print("done")
 
     # Benchmark model
     print("--> Benchmark model")
@@ -82,6 +90,5 @@ if __name__ == "__main__":
     # perf
     print("--> Begin evaluate model performance")
     perf_results = rknn.eval_perf(inputs=[img])
-    print("done")
 
     rknn.release()
