@@ -5,7 +5,7 @@
 git clone https://github.com/Tony607/Keras_RK3399pro
 ```
 
-**Download pre-compiled Python wheel files from my [aarch64_python_packages](https://github.com/Tony607/aarch64_python_packages) repo and [rknn_toolkit](https://github.com/rockchip-toybrick/RKNPUTool/tree/master/rknn-toolkit/package) wheels from their official GitHub.** 
+**Download pre-compiled Python wheel files from my [aarch64_python_packages](https://coding.net/u/zcw607/p/aarch64_python_packages/git) repo and [rknn_toolkit](https://github.com/rockchip-toybrick/RKNPUTool/tree/master/rknn-toolkit/package) wheels from their official GitHub.** 
 ### Step1: Freeze Keras model and convert to RKNN model (On Linux development machine)
 Require [Python 3.5+](https://www.python.org/ftp/python/3.6.7/python-3.6.7.exe).
 
